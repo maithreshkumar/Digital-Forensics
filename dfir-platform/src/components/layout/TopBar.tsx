@@ -140,8 +140,7 @@ export default function TopBar({ title, breadcrumbs = [] }: TopBarProps) {
               {user?.name?.split(' ').map(n => n[0]).join('').slice(0, 2) || 'SM'}
             </div>
             <div className="hidden lg:block text-left">
-              <div className="text-xs font-semibold text-slate-900 leading-tight">{user?.name?.split(' ').slice(0,2).join(' ')}</div>
-              <div className="text-[10px] text-blue-600 font-medium capitalize">{user?.role}</div>
+              <div className="text-[10px] text-blue-600 font-semibold uppercase">Admin</div>
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </button>

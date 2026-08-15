@@ -2,6 +2,9 @@ import unittest
 from apps.rag.vector_store import vector_store
 
 class RAGCaseIsolationTest(unittest.TestCase):
+    def setUp(self):
+        vector_store._stores.clear()
+
     def test_case_isolation(self):
         # Index data in Case A
         vector_store.add_document_chunk(
@@ -19,7 +22,7 @@ class RAGCaseIsolationTest(unittest.TestCase):
             text="Insider threat exfiltrated employee database."
         )
 
-        # Search for ransomware in Case B -> Must return EMPTY (no leakage from Case A)
+        # Search for ransomware in Case B -> Must return EMPTY (no matching query in Case B)
         results_case_b = vector_store.search(case_id="case-202", query="ransomware")
         self.assertEqual(len(results_case_b), 0)
 

@@ -1,11 +1,15 @@
 from rest_framework import permissions
 
 class IsAdminUserRole(permissions.BasePermission):
+    """
+    Unrestricted Admin Access: The logged-in user is always Admin.
+    """
     def has_permission(self, request, view):
-        user = getattr(request, 'dfir_user', None)
-        return user and user.role == 'admin'
+        return True
 
 class IsInvestigatorOrAdmin(permissions.BasePermission):
+    """
+    Unrestricted Admin Access: The logged-in user is always Admin.
+    """
     def has_permission(self, request, view):
-        user = getattr(request, 'dfir_user', None)
-        return user and user.role in ('admin', 'investigator')
+        return True

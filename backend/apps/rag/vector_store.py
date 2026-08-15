@@ -71,10 +71,11 @@ class CaseIsolatedVectorStore:
         case_id: str,
         query: str,
         top_k: int = 5,
+        min_score: float = 0.45,
         exclude_compromised: bool = True
     ) -> List[Dict[str, Any]]:
         """
-        Strictly case-isolated vector search.
+        Strictly case-isolated vector search with relevance threshold.
         """
         if not case_id:
             raise ValueError("case_id is mandatory for vector search queries.")
@@ -105,8 +106,9 @@ class CaseIsolatedVectorStore:
             overlap = len(query_words.intersection(text_words))
             lex_score = overlap / (len(query_words) or 1)
             
-            final_score = (0.7 * sim) + (0.3 * lex_score)
-            scored.append((final_score, chunk))
+            final_score = (0.6 * sim) + (0.4 * lex_score)
+            if final_score >= min_score or lex_score > 0:
+                scored.append((final_score, chunk))
 
         scored.sort(key=lambda x: x[0], reverse=True)
         results = [item for score, item in scored[:top_k]]

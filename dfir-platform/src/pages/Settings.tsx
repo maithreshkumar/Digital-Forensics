@@ -64,7 +64,7 @@ export default function Settings() {
                   <div className="w-20 h-20 rounded-2xl gradient-blue flex items-center justify-center text-white text-2xl font-bold mb-3">SM</div>
                   <h3 className="font-bold text-slate-900">{user?.name}</h3>
                   <p className="text-xs text-slate-500 mt-0.5">{user?.email}</p>
-                  <span className="mt-2 px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full capitalize">{user?.role}</span>
+                  <span className="mt-2 px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">System Administrator</span>
                 </div>
                 <div className="space-y-3 border-t border-slate-100 pt-4">
                   {[{ label: 'Department', value: 'Cyber Forensics Unit' }, { label: 'Clearance', value: 'SECRET' }, { label: 'Agent ID', value: 'CF-0042' }].map(i => (
